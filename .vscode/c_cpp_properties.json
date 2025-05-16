@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        {
+            "name": "macos-clang-arm64",
+            "includePath": [
+                "/Users/adibbiniqbal/Library/CloudStorage/OneDrive-BUET/CSE 208/**"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-arm64",
+            "compilerArgs": [
+                ""
+            ],
+            "compilerPathInCppPropertiesJson": "/opt/homebrew/bin/g++\"",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {
+                "reduce": "default",
+                "priority": "afterSystemIncludes",
+                "order": "depthFirst"
+            },
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "gcc-arm64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "cStandard": "c17",
+            "compilerPath": "/opt/homebrew/bin/g++"
+        }
+    ],
+    "version": 4
+}

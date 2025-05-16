@@ -1,0 +1,96 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <climits>
+#include <algorithm>
+using namespace std;
+
+typedef pair<int, int> pii;
+const int INF = INT_MAX;
+
+// Dijkstra's algorithm function
+void dijkstra(int V, vector<vector<pii>> &adj, int source, vector<int> &dist, vector<int> &parent)
+{
+    dist.assign(V, INF);
+    parent.assign(V, -1);
+    dist[source] = 0;
+
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    pq.push({0, source}); // (distance, vertex)
+
+    while (!pq.empty())
+    {
+        int u = pq.top().second;
+        int d_u = pq.top().first;
+        pq.pop();
+
+        if (d_u > dist[u])
+            continue;
+
+        for (auto [v, weight] : adj[u])
+        {
+            if (dist[u] + weight < dist[v])
+            {
+                dist[v] = dist[u] + weight;
+                parent[v] = u;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+}
+
+// Path reconstruction
+vector<int> getPath(int target, const vector<int> &parent)
+{
+    vector<int> path;
+    for (int v = target; v != -1; v = parent[v])
+        path.push_back(v);
+    reverse(path.begin(), path.end());
+    return path;
+}
+
+// Main
+int main()
+{
+    int V, E;
+    cout << "Enter number of vertices and edges: ";
+    cin >> V >> E;
+
+    vector<vector<pii>> adj(V);
+    cout << "Enter edges (u v weight):\n";
+    for (int i = 0; i < E; ++i)
+    {
+        int u, v, w;
+        cin >> u >> v >> w;
+        adj[u].push_back({v, w});
+        // If undirected graph, add: adj[v].push_back({u, w});
+    }
+
+    int source;
+    cout << "Enter source vertex: ";
+    cin >> source;
+
+    vector<int> dist, parent;
+    dijkstra(V, adj, source, dist, parent);
+
+    cout << "\nShortest distances from source " << source << ":\n";
+    for (int i = 0; i < V; ++i)
+        cout << "To " << i << ": " << (dist[i] == INF ? -1 : dist[i]) << endl;
+
+    int target;
+    cout << "\nEnter target vertex to get path: ";
+    cin >> target;
+
+    vector<int> path = getPath(target, parent);
+    if (dist[target] == INF)
+        cout << "No path exists.\n";
+    else
+    {
+        cout << "Path: ";
+        for (int v : path)
+            cout << v << " ";
+        cout << endl;
+    }
+
+    return 0;
+}

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/adibbiniqbal/Library/CloudStorage/OneDrive-BUET/CSE 208/Practice_Problems_BFS_DFS",
+      "program": "/Users/adibbiniqbal/Library/CloudStorage/OneDrive-BUET/CSE 208/Practice_Problems_BFS_DFS/build/Debug/outDebug"
+    }
+  ]
+}
