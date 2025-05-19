@@ -109,20 +109,16 @@ int main()
         int u, v;
         float w;
         cin >> u >> v >> w;
-        edges.push_back({u, v, w});
-        edges.push_back({v, u, w});
-    }
-
-    // Add missing edges with cost q
-    for (int u = 0; u < n; u++)
-    {
-        for (int v = u + 1; v < n; v++)
-        {
+        if(w>q){
             edges.push_back({u, v, q});
             edges.push_back({v, u, q});
         }
+        else{
+            edges.push_back({u, v, w});
+            edges.push_back({v, u, w});
+        }
+        
     }
-
     float minCost = kruskal(n, edges);
     cout << fixed << setprecision(2) << minCost << endl;
     return 0;
